@@ -40,7 +40,7 @@ class StatisticalModel:
             self.rating[key] = score
         return dict(sorted(self.rating.items(), key=lambda item: item[1], reverse=True))
 
-    def prepareQuery(self, thisquery):
+    def prepareWeightQuery(self, thisquery):
         thisquery = "".join(thisquery.split())
         thisquery = thisquery.upper()
         thisquery = thisquery.replace('QUERY:<', '')
@@ -58,3 +58,9 @@ class StatisticalModel:
             else:
                 self.query[word] = 0
         return self.query
+
+    def prepareUnWeightQuery(self,thisquery):
+        for word in thisquery:
+            if word !=" ":
+                self.query[word]=self.query[word]+1
+        return  self.query

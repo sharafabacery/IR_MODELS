@@ -16,7 +16,7 @@ def index():
 def genrateFiles():
     if request.method == "GET":
         obj = classes.genrateFiles.GenrateFile(10)
-        obj.mix("ABCDEF")
+        obj.mix("ABCDEF", 100, 250)
         return redirect(url_for('index'))
 
 
@@ -25,9 +25,14 @@ def statisticalModelFunc():
     obj1 = classes.statisticalModel.StatisticalModel()
     if request.method == "POST":
         query = request.form['search']
+        IsWeighted = request.form['weight']
     else:
         query = request.args.get['search']
-    obj1.prepareQuery(query)
+    if IsWeighted == "True":
+        obj1.prepareWeightQuery(query)
+    else:
+        print('A7a')
+        obj1.prepareUnWeightQuery(query)
     obj1.structureOfModel()
     results = obj1.dotProduct()
     # return redirect(url_for('index'))

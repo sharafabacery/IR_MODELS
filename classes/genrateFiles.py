@@ -29,7 +29,7 @@ class GenrateFile:
         file.write(string)
         file.close()
 
-    def mix(self,chars):
+    def mix(self,chars,min,max):
         flag = self.createdir()
         print(flag)
         if flag:
@@ -38,7 +38,7 @@ class GenrateFile:
             for Document in self.arrayDocuments:
                 try:
                     self.genrateandfill(os.path.join(os.path.join(root_dir, self.dirName), Document),
-                                        self.genratestring(min=100, max=250, chars=chars))
+                                        self.genratestring(min=min, max=max, chars=chars))
                 except:
                     return False
             return True
