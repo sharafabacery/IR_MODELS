@@ -43,7 +43,7 @@ def statisticalModelFunc():
     obj1.structureOfModel()
     results = obj1.dotProduct()
     # return redirect(url_for('index'))
-    return render_template('statisticalmodelresults.html', results=results)
+    return render_template('results.html', results=results,model="statistical Model")
 
 
 @app.route('/document/<document>')
@@ -57,10 +57,3 @@ def body1(document):
 
 if __name__ == '__main__':
     app.run()
-
-    # obj = classes.genrateFiles.GenrateFile(100)
-    # obj.mix("ABCDEF")
-    # obj1 = classes.statisticalModel.StatisticalModel()
-    # obj1.prepareQuery('Query:  <A:0.8; B:0.5; D:0.8 ;C:0.7>')
-    # obj1.structureOfModel()
-    # print(obj1.dotProduct())

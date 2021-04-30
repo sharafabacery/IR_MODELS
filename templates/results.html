@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="center-screen">
-        <h2>results</h2>
+        <h2>results {{ model }}</h2>
         <table >
             <tr><th>document</th><td>similarity</td> <td>links</td></tr>
             {% for key, value in results.items() %}
