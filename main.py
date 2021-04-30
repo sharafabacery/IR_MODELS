@@ -12,11 +12,19 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/genrateFiles', methods=['GET'])
-def genrateFiles():
+@app.route('/generateFilesStatModel', methods=['GET'])
+def generateFilesStatModel():
     if request.method == "GET":
         obj = classes.genrateFiles.GenrateFile(10)
         obj.mix("ABCDEF", 100, 250)
+        return redirect(url_for('index'))
+
+
+@app.route('/generateFilesVectorModel', methods=['GET'])
+def generateFilesVectorModel():
+    if request.method == "GET":
+        obj = classes.genrateFiles.GenrateFile(10)
+        obj.mix("ABCDEF", 1, 10)
         return redirect(url_for('index'))
 
 
