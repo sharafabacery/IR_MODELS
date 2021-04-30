@@ -1,5 +1,6 @@
 import os
 import random
+import shutil
 
 
 class GenrateFile:
@@ -7,7 +8,7 @@ class GenrateFile:
     arrayWord = ['A', 'B', 'C', 'D', 'E', 'F']
     arrayDocuments = []
 
-    def __init__(self,numofdoc):
+    def __init__(self, numofdoc):
         for iterator in range(numofdoc):
             self.arrayDocuments.append("Document" + str(iterator + 1) + ".txt")
 
@@ -21,6 +22,16 @@ class GenrateFile:
             flag = False
         return flag
 
+    def deletedir(self):
+        root_dir = os.path.abspath(os.curdir)  # root dir
+        path = os.path.join(root_dir, self.dirName)
+        flag = True
+        try:
+            shutil.rmtree(path)
+        except OSError:
+            flag = False
+        return flag
+
     def genratestring(self, min, max, chars):
         return " ".join("".join(random.choice(str(chars)) for _ in range(random.randint(min, max))))
 
@@ -29,7 +40,8 @@ class GenrateFile:
         file.write(string)
         file.close()
 
-    def mix(self,chars,min,max):
+    def mix(self, chars, min, max):
+        self.deletedir()
         flag = self.createdir()
         print(flag)
         if flag:

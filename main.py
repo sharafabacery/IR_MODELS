@@ -31,7 +31,6 @@ def statisticalModelFunc():
     if IsWeighted == "True":
         obj1.prepareWeightQuery(query)
     else:
-        print('A7a')
         obj1.prepareUnWeightQuery(query)
     obj1.structureOfModel()
     results = obj1.dotProduct()
