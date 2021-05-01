@@ -3,6 +3,7 @@ import os
 
 import classes.genrateFiles
 import classes.statisticalModel
+import classes.vectorSpaceModel
 
 app = Flask(__name__)
 
@@ -42,16 +43,29 @@ def statisticalModelFunc():
         obj1.prepareUnWeightQuery(query)
     obj1.structureOfModel()
     results = obj1.dotProduct()
-    # return redirect(url_for('index'))
-    return render_template('results.html', results=results,model="statistical Model")
+    return render_template('results.html', results=results, model="statistical Model")
+
+
+@app.route('/vectorSpaceModel', methods=['POST', 'GET'])
+def vectorSpaceModel():
+    obj1 = classes.vectorSpaceModel.VectorSpaceModel()
+    obj1.tfDocuments()
+    obj1.idfCalculation()
+    obj1.weightCalculation()
+    if request.method == "POST":
+        query = request.form['search']
+    else:
+        query = request.args.get['search']
+    obj1.querySet(query)
+
+    results = obj1.cosineSimilarity()
+    return render_template('results.html', results=results, model="vector-space Model")
 
 
 @app.route('/document/<document>')
 def body1(document):
     filtered = open(os.path.join(os.path.join(os.path.curdir, "Documents"), document), 'r')
-    print(os.path.join(os.path.join(os.path.curdir, "Documents"), document))
     content = filtered.read()
-
     return '%s' % content
 
 
