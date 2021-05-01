@@ -38,7 +38,7 @@ class VectorSpaceModel:
     def tfPerDocument(self, filename):
         filtered = open(os.path.join(self.path, filename), 'r')
         content = filtered.read()
-        calc = self.tfCalc(content)
+        calc = self.tfCalc(content.upper())
         return calc
 
     def tfDocuments(self):
