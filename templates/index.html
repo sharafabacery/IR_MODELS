@@ -8,13 +8,14 @@
 <body>
     <div class="center-screen">
         <h2>SHOSHO SEARCH ENGINE</h2>
+        <h3>statistical Model</h3>
         <form action="http://127.0.0.1:5000/statisticalModel" method="POST" >
             <div><input type="text" name="search"  />   </div>
 
             <div><h3>Weight?</h3></div>
 
             <div><input type="radio" name="weight" value="True" id="True" checked/>
-             <label for="True">weight</label><br>
+                <label for="True">weight</label><br></div>
 
             <div><input type="radio" name="weight" value="False" id="False"/><label for="False">unweighted</label><br>
             </div>
@@ -22,19 +23,19 @@
             <div>
                 <button type="submit">submit</button>
                 <a href="http://127.0.0.1:5000/generateFilesStatModel">I am feeling lucky Stat Model</a>
-                <a href="http://127.0.0.1:5000/generateFilesVectorModel">I am feeling lucky vector Model</a>
+
 
             </div>
-            
+            <h3>vector Space Model </h3>
         </form>
                 <form action="http://127.0.0.1:5000/vectorSpaceModel" method="POST" >
             <div><input type="text" name="search"  />   </div>
 
-            <div>
+
         <br>
             <div>
                 <button type="submit">submit</button>
-
+                <a href="http://127.0.0.1:5000/generateFilesVectorModel">I am feeling lucky vector Model</a>
             </div>
 
         </form>
