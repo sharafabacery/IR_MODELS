@@ -1,9 +1,9 @@
 from flask import *
 import os
 
-import classes.genrateFiles
-import classes.statisticalModel
-import classes.vectorSpaceModel
+import src.classes.genrateFiles
+import src.classes.statisticalModel
+import src.classes.vectorSpaceModel
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ def index():
 @app.route('/generateFilesStatModel', methods=['GET'])
 def generateFilesStatModel():
     if request.method == "GET":
-        obj = classes.genrateFiles.GenrateFile(10)
+        obj = src.classes.genrateFiles.GenrateFile(10)
         obj.mix("ABCDEF", 100, 250)
         return redirect(url_for('index'))
 
@@ -24,14 +24,14 @@ def generateFilesStatModel():
 @app.route('/generateFilesVectorModel', methods=['GET'])
 def generateFilesVectorModel():
     if request.method == "GET":
-        obj = classes.genrateFiles.GenrateFile(10)
+        obj = src.classes.genrateFiles.GenrateFile(10)
         obj.mix("ABCDEF", 1, 10)
         return redirect(url_for('index'))
 
 
 @app.route('/statisticalModel', methods=['POST', 'GET'])
 def statisticalModelFunc():
-    obj1 = classes.statisticalModel.StatisticalModel()
+    obj1 = src.classes.statisticalModel.StatisticalModel()
     if request.method == "POST":
         query = request.form['search']
         IsWeighted = request.form['weight']
@@ -48,7 +48,7 @@ def statisticalModelFunc():
 
 @app.route('/vectorSpaceModel', methods=['POST', 'GET'])
 def vectorSpaceModel():
-    obj1 = classes.vectorSpaceModel.VectorSpaceModel()
+    obj1 = src.classes.vectorSpaceModel.VectorSpaceModel()
     obj1.tfDocuments()
     obj1.idfCalculation()
     obj1.weightCalculation()
