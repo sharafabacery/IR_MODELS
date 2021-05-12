@@ -63,7 +63,7 @@ def vectorSpaceModel():
 
 
 @app.route('/document/<document>')
-def body1(document):
+def showContentOfDocument(document):
     filtered = open(os.path.join(os.path.join(os.path.curdir, "Documents"), document), 'r')
     content = filtered.read()
     return '%s' % content
