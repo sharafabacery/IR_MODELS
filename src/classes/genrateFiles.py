@@ -11,7 +11,7 @@ class GenrateFile:
         for iterator in range(numOfDoc):
             self.arrayDocuments.append("Document" + str(iterator + 1) + ".txt")
 
-    def createdir(self):
+    def createDir(self):
         root_dir = os.path.abspath(os.curdir)  # root dir
         path = os.path.join(root_dir, self.dirName)
         flag = True
@@ -21,7 +21,7 @@ class GenrateFile:
             flag = False
         return flag
 
-    def deletedir(self):
+    def deleteDir(self):
         root_dir = os.path.abspath(os.curdir)  # root dir
         path = os.path.join(root_dir, self.dirName)
         flag = True
@@ -31,22 +31,22 @@ class GenrateFile:
             flag = False
         return flag
 
-    def genratestring(self, minNumChar, maxNumChar, chars):
+    def genrateString(self, minNumChar, maxNumChar, chars):
         return " ".join("".join(random.choice(str(chars)) for _ in range(random.randint(minNumChar, maxNumChar))))
 
-    def genrateandfill(self, pathFile, string):
+    def genrateAndFill(self, pathFile, string):
         file = open(pathFile, "w")
         file.write(string)
         file.close()
 
     def mix(self, chars, minMix, maxMix):
-        self.deletedir()
-        flag = self.createdir()
+        self.deleteDir()
+        flag = self.createDir()
         if flag:
             root_dir = os.path.abspath(os.curdir)
             for Document in self.arrayDocuments:
-                self.genrateandfill(os.path.join(os.path.join(root_dir, self.dirName), Document),
-                                    self.genratestring(min=minMix, max=maxMix, chars=chars))
+                self.genrateAndFill(os.path.join(os.path.join(root_dir, self.dirName), Document),
+                                    self.genrateString(minNumChar=minMix, maxNumChar=maxMix, chars=chars))
             return True
         else:
             return False
