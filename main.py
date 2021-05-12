@@ -32,6 +32,7 @@ def generateFilesVectorModel():
 @app.route('/statisticalModel', methods=['POST', 'GET'])
 def statisticalModelFunc():
     obj1 = src.classes.statisticalModel.StatisticalModel()
+    IsWeighted = ""
     if request.method == "POST":
         query = request.form['search']
         IsWeighted = request.form['weight']
