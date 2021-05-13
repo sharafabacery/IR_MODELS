@@ -9,7 +9,7 @@ class VectorSpaceModel:
     query = {}
     similarities = {}
     path = ""
-    charChoosenVec = ""
+    charChoosen = ""
 
     def __init__(self, charChoosen):
         self.path = os.path.join(os.path.curdir, 'Documents')
