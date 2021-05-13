@@ -5,23 +5,27 @@ class StatisticalModel:
     arrayResults = {}
     arrayDocuments = []
     rating = {}
-    query = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0,
-             'F': 0}
+    charChoosen=""
+    query = {}
     path = ""
 
-    def __init__(self):
+    def __init__(self,charChoosen):
         self.path = os.path.join(os.path.curdir, "Documents")
         it = len(os.listdir(self.path))
+        self.charChoosen=charChoosen
+        for iterator in charChoosen:
+           self.query[iterator]=0
         for iterator in range(it):
             index = "Document" + str(iterator + 1) + ".txt"
-            self.arrayResults[index] = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0,
-                                        'F': 0}
+            self.arrayResults[index] = self.query
             self.arrayDocuments.insert(iterator, index)
 
     def statisticalString(self, filename):
         filtered = open(os.path.join(self.path, filename), 'r')
         content = filtered.read()
-        bagofwords = {'A': 0.0, 'B': 0.0, 'C': 0.0, 'D': 0.0, 'E': 0.0, 'F': 0.0}
+        bagofwords = {}
+        for iterator in self.charChoosen:
+            bagofwords[iterator]=0
         length = len("".join(content.split()))
         for char in content:
             if char != " ":
@@ -52,7 +56,8 @@ class StatisticalModel:
             if len(thisquery1) >1:
                 thirstier[thisquery1[0]] = float(thisquery1[1])
         thirstier = dict(sorted(thirstier.items(), key=lambda item: item[0]))
-        for word in ['A', 'B', 'C', 'D', 'E', 'F']:
+        listOfChar=[char for char in self.charChoosen]
+        for word in listOfChar:
             if word in thirstier:
                 self.query[word] = float(thirstier[word])
             else:

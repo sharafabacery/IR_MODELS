@@ -25,13 +25,13 @@ def generateFilesStatModel():
 def generateFilesVectorModel():
     if request.method == "GET":
         obj = src.classes.genrateFiles.GenrateFile(10)
-        obj.mix("ABCDEF", 1, 10)
+        obj.mix("ABCDEFG", 1, 10)
         return redirect(url_for('index'))
 
 
 @app.route('/statisticalModel', methods=['POST', 'GET'])
 def statisticalModelFunc():
-    obj1 = src.classes.statisticalModel.StatisticalModel()
+    obj1 = src.classes.statisticalModel.StatisticalModel("ABCDEFG")
     IsWeighted = ""
     if request.method == "POST":
         query = request.form['search']
