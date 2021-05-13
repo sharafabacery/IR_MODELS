@@ -9,23 +9,24 @@ class VectorSpaceModel:
     query = {}
     similarities = {}
     path = ""
+    charChoosenVec = ""
 
-    def __init__(self):
+    def __init__(self, charChoosen):
         self.path = os.path.join(os.path.curdir, 'Documents')
         it = len(os.listdir(self.path))
-        self.idf = self.query = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0,
-                                 'F': 0}
+        self.charChoosen = charChoosen
+        for iterator in charChoosen:
+            self.query[iterator] = 0
+            self.idf[iterator] = 0
         for iterator in range(it):
             index = "Document" + str(iterator + 1) + ".txt"
-            self.documents[index] = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0,
-                                     'F': 0}
-            self.weight[index] = {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0,
-                                  'F': 0}
+            self.documents[index] = {char: 0 for char in self.charChoosen}
+            self.weight[index] = {char: 0 for char in self.charChoosen}
 
             self.similarities[index] = 0
 
     def tfCalc(self, content):
-        bagofwords = {'A': 0.0, 'B': 0.0, 'C': 0.0, 'D': 0.0, 'E': 0.0, 'F': 0.0}
+        bagofwords = {char: 0 for char in self.charChoosen}
         for char in content:
             if char != " ":
                 bagofwords[char] = bagofwords[char] + 1
