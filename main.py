@@ -39,7 +39,9 @@ def statisticalModelFunc():
     else:
         query = request.args.get['search']
     if IsWeighted == "True":
-        obj1.prepareWeightQuery(query)
+
+        if obj1.prepareWeightQuery(query) == 0:
+            return redirect(url_for('index'))
     else:
         obj1.prepareUnWeightQuery(query)
     obj1.structureOfModel()

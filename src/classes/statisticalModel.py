@@ -54,7 +54,10 @@ class StatisticalModel:
         for qq in thisquery:
             thisquery1 = qq.split(":")
             if len(thisquery1) >1:
-                thirstier[thisquery1[0]] = float(thisquery1[1])
+                if float(thisquery1[1])>=0 and float(thisquery1[1])<1:
+                    thirstier[thisquery1[0]] = float(thisquery1[1])
+                else:
+                    return 0
         thirstier = dict(sorted(thirstier.items(), key=lambda item: item[0]))
         listOfChar=[char for char in self.charChoosen]
         for word in listOfChar:
@@ -65,7 +68,8 @@ class StatisticalModel:
         return self.query
 
     def prepareUnWeightQuery(self,thisquery):
+        length = len("".join(thisquery.split()))
         for word in thisquery:
             if word !=" ":
-                self.query[word]=self.query[word]+1
+                self.query[word]=self.query[word]+(1 / length)
         return  self.query
