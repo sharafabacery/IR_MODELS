@@ -48,6 +48,7 @@ class StatisticalModel:
         thisquery = "".join(thisquery.split())
         thisquery = thisquery.upper()
         thisquery = thisquery.replace('QUERY:<', '')
+        thisquery = thisquery.replace('<', '')
         thisquery = thisquery.replace('>', '')
         thisquery = thisquery.split(";")
         thirstier = {}
